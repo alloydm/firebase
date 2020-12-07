@@ -24,7 +24,7 @@ function submitForm(e)
   let name = document.querySelector(".name").value;
   let email = document.querySelector(".email").value;
   let message = document.querySelector(".message").value;
-  console.log(name,email,message);
+
 
   saveContactInfo(name,email,message);
   document.querySelector(".contact-form").reset();
@@ -37,4 +37,24 @@ function saveContactInfo(name,email,message)
     email : email,
     message: message
   });
+}
+// retrieving data
+contactInfo.on('value',gotdata,errdata);
+
+function gotdata(data)
+{
+  var scores = data.val();
+  var keys = Object.keys(scores);
+  for(var i =0;i< keys.length;i++)
+  {
+    var k =keys[i];
+    var msg = scores[k].message;
+    console.log(msg);
+  }
+  console.log(data.val());
+}
+function errdata(err)
+{
+  console.log('error!');
+  console.log(err);
 }
